@@ -78,7 +78,7 @@ export const getContactsForDMList = async (request, response, next) => {
           firstName: "$contactInfo.firstName",
           lastName: "$contactInfo.lastName",
           image: "$contactInfo.image",
-          color: "contactInfo.color",
+          color: "$contactInfo.color",
         },
       },
       {
@@ -97,12 +97,17 @@ export const getAllContacts = async (request, response, next) => {
   try {
     const users = await User.find(
       { _id: { $ne: request.userId } },
-      "firstName lastName _id email"
+      "firstName lastName _id email color image"
     );
 
     const contacts = users.map((user) => ({
       label: user.firstName ? `${user.firstName} ${user.lastName}` : user.email,
       value: user._id,
+      email: user.email,
+      firstName: user.firstName,
+      lastName: user.lastName,
+      color: user.color,
+      image: user.image,
     }));
 
     return response.status(200).send({ contacts });

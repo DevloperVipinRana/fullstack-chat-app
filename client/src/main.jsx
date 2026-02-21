@@ -7,9 +7,9 @@ import { SocketProvider } from './context/SocketContext.jsx';
 
 createRoot(document.getElementById('root')).render(
   // <StrictMode>
-    <SocketProvider>
-      <App />
-      <Toaster closeButton/>
-    </SocketProvider>
+  <SocketProvider>
+    <App />
+    <Toaster closeButton position="top-right" />
+  </SocketProvider>
   /* </StrictMode>, */
 )
