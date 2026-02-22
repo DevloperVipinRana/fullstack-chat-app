@@ -117,7 +117,7 @@ const MessageBar = () => {
 
   return (
     <div className="bg-[#1c1d25] flex justify-center items-center px-4 md:px-8 py-3 pb-[calc(0.75rem+env(safe-area-inset-bottom))] gap-3 md:gap-6">
-      <div className="flex-1 flex bg-[#2a2b33] rounded-md items-center gap-2 md:gap-5 pr-3 md:pr-5">
+      <div className="flex-1 flex bg-[#2a2b33] rounded-md items-center gap-4 md:gap-5 pr-3 md:pr-5">
         <input
           type="text"
           className="flex-1 p-3 md:p-5 bg-transparent rounded-md focus:border-0 focus:outline-none text-sm md:text-base"
@@ -130,7 +130,7 @@ const MessageBar = () => {
           className="text-neutral-500 active:text-white duration-300 transition-all flex-shrink-0"
           onClick={handleAttachmentClick}
         >
-          <GrAttachment className="text-lg md:text-2xl" />
+          <GrAttachment className="text-xl md:text-2xl" />
         </button>
         <input
           type="file"
@@ -143,14 +143,15 @@ const MessageBar = () => {
             className="text-neutral-500 active:text-white duration-300 transition-all"
             onClick={() => setEmojiPickerOpen(true)}
           >
-            <RiEmojiStickerLine className="text-lg md:text-2xl" />
+            <RiEmojiStickerLine className="text-xl md:text-2xl" />
           </button>
-          <div className="absolute bottom-12 right-0" ref={emojiRef}>
+          <div className="absolute bottom-12 right-[-60px] md:right-0" ref={emojiRef}>
             <EmojiPicker
               theme="dark"
               open={emojiPickerOpen}
               onEmojiClick={handleAddEmoji}
               autoFocusSearch={false}
+              width={window.innerWidth < 400 ? 300 : 350}
             />
           </div>
         </div>

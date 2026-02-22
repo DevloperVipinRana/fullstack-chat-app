@@ -43,12 +43,15 @@ const App = () => {
       }
     };
 
+    // If userInfo is missing from persistence, fetch it from backend
     if (!userInfo) {
       getUserData();
     } else {
+      // If userInfo already exists in store, stop loading
       setLoading(false);
     }
-  }, [userInfo, setUserInfo]);
+    // We only want this effect to run on mount or if setUserInfo changes
+  }, [setUserInfo]);
 
   if (loading) {
     return <SplashLoader />;

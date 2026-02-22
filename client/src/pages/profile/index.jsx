@@ -79,10 +79,14 @@ const Profile = () => {
       const formData = new FormData();
       formData.append("profile-image", file);
 
-      const response = await apiClient.post(ADD_PROFILE_IMAGE_ROUTE, formData, { withCredentials: true })
-      if (response.status === 200 && response.data.image) {
-        setUserInfo({ ...userInfo, image: response.data.image })
-        toast.success("Image updated successfully.")
+      try {
+        const response = await apiClient.post(ADD_PROFILE_IMAGE_ROUTE, formData, { withCredentials: true })
+        if (response.status === 200 && response.data.image) {
+          setUserInfo({ ...userInfo, image: response.data.image })
+          toast.success("Image updated successfully.")
+        }
+      } catch (error) {
+        console.log({ error });
       }
     }
   };
